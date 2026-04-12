@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Project Wiki</title>
+    <style>
+        /* Simple Wiki Styling */
+        body { font-family: sans-serif; margin: 0; display: flex; background: #f6f6f6; }
+        
+        /* Sidebar */
+        nav { width: 200px; background: #fff; border-right: 1px solid #a7d7f9; height: 100vh; padding: 20px; position: fixed; }
+        nav h2 { font-size: 1.2rem; color: #444; }
+        nav ul { list-style: none; padding: 0; }
+        nav li { margin-bottom: 10px; }
+        nav a { text-decoration: none; color: #0645ad; }
+        nav a:hover { text-decoration: underline; }
+
+        /* Main Content Area */
+        main { margin-left: 240px; padding: 40px; background: #fff; min-height: 100vh; max-width: 800px; border-left: 1px solid #a7d7f9; }
+        h1 { border-bottom: 1px solid #a2a9b1; padding-bottom: 5px; font-family: 'Linux Libertine', Georgia, serif; }
+        .info-box { float: right; width: 250px; border: 1px solid #a2a9b1; background: #f8f9fa; padding: 10px; margin-left: 20px; font-size: 0.9rem; }
+        .info-box img { width: 100%; height: auto; }
+        p { line-height: 1.6; color: #202122; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <h2>Navigation</h2>
+        <ul>
+            <li><a href="#">Main page</a></li>
+            <li><a href="#">Contents</a></li>
+            <li><a href="#">Current events</a></li>
+            <li><a href="#">Random article</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <h1>Welcome to My Wiki</h1>
+
+        <div class="info-box">
+            <img src="https://placeholder.com" alt="Placeholder">
+            <p><strong>Project Name:</strong> My First Wiki</p>
+            <p><strong>Status:</strong> Live on GitHub</p>
+            <p><strong>Created:</strong> 2023</p>
+        </div>
+
+        <p>This is a <strong>Wiki-style</strong> page built with pure HTML and CSS. You can add more text here to describe your project or topic.</p>
+        
+        <h2>Section One</h2>
+        <p>To add more pages, just create a second file like <code>about.html</code> and link to it in the sidebar on the left.</p>
+
+        <h2>Section Two</h2>
+        <p>Since this is a static site on GitHub, users can't click "Edit" to change the text themselves—only you can change it by updating your code and pushing it back to GitHub!</p>
+    </main>
+
+</body>
+</html>
