@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kali Linux</title>
+
+<style>
+:root {
+    --bg: #0d1117;
+    --text: #00ff9f;
+    --box: #161b22;
+    --border: #30363d;
+    --accent: #00ff9f;
+}
+
+body {
+    margin: 0;
+    font-family: "Courier New", monospace;
+    background: black;
+    color: var(--text);
+    overflow-x: hidden;
+}
+
+/* MATRIX BACKGROUND */
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+/* HEADER */
+header {
+    padding: 15px;
+    font-size: 24px;
+    background: rgba(0,0,0,0.8);
+    border-bottom: 1px solid var(--border);
+}
+
+/* LAYOUT */
+.container {
+    display: flex;
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 220px;
+    background: rgba(0,0,0,0.7);
+    padding: 15px;
+    border-right: 1px solid var(--border);
+}
+
+.sidebar a {
+    display: block;
+    color: var(--accent);
+    margin: 8px 0;
+    text-decoration: none;
+}
+
+.sidebar a:hover {
+    text-shadow: 0 0 8px var(--accent);
+}
+
+/* CONTENT */
+.content {
+    flex: 1;
+    padding: 20px;
+}
+
+/* SECTIONS */
+.section {
+    background: rgba(0,0,0,0.6);
+    border: 1px solid var(--border);
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0,255,159,0.1);
+}
+
+h2 {
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 5px;
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="matrix"></canvas>
+
+<header>
+> Kali Linux_
+</header>
+
+<div class="container">
+
+<div class="sidebar">
+    <h3>Navigation</h3>
+    <a href="index.html">Home</a>
+    <a href="#overview">Overview</a>
+    <a href="#tools">Tools</a>
+    <a href="#usecases">Use Cases</a>
+</div>
+
+<div class="content">
+
+<div class="section" id="overview">
+    <h2>Overview</h2>
+    <p>
+        :contentReference[oaicite:0]{index=0} is a Debian-based Linux distribution designed for penetration testing,
+        ethical hacking, and cybersecurity auditing.
+    </p>
+</div>
+
+<div class="section" id="tools">
+    <h2>Tools</h2>
+    <ul>
+        <li>Metasploit Framework</li>
+        <li>Nmap</li>
+        <li>Wireshark</li>
+        <li>Aircrack-ng</li>
+        <li>Burp Suite</li>
+    </ul>
+</div>
+
+<div class="section" id="usecases">
+    <h2>Use Cases</h2>
+    <ul>
+        <li>Penetration testing</li>
+        <li>Network security auditing</li>
+        <li>Digital forensics</li>
+        <li>Security research</li>
+    </ul>
+</div>
+
+</div>
+</div>
+
+<script>
+// MATRIX EFFECT
+const canvas = document.getElementById("matrix");
+const ctx = canvas.getContext("2d");
+
+canvas.height = window.innerHeight;
+canvas.width = window.innerWidth;
+
+const letters = "01";
+const fontSize = 14;
+const columns = canvas.width / fontSize;
+
+const drops = Array.from({length: columns}).fill(1);
+
+function drawMatrix() {
+    ctx.fillStyle = "rgba(0,0,0,0.05)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = "#00ff9f";
+    ctx.font = fontSize + "px monospace";
+
+    drops.forEach((y, i) => {
+        const text = letters[Math.floor(Math.random()*letters.length)];
+        ctx.fillText(text, i * fontSize, y * fontSize);
+
+        if (y * fontSize > canvas.height && Math.random() > 0.975)
+            drops[i] = 0;
+
+        drops[i]++;
+    });
+}
+
+setInterval(drawMatrix, 50);
+</script>
+
+</body>
+</html>
