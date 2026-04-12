@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cybersecurity Wiki</title>
+
+<style>
+:root {
+    --bg: #0d1117;
+    --text: #00ff9f;
+    --box: #161b22;
+    --border: #30363d;
+    --accent: #00ff9f;
+}
+
+body {
+    margin: 0;
+    font-family: "Courier New", monospace;
+    background: black;
+    color: var(--text);
+    overflow-x: hidden;
+}
+
+/* MATRIX BACKGROUND */
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+/* HEADER */
+header {
+    padding: 15px;
+    font-size: 24px;
+    background: rgba(0,0,0,0.8);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+}
+
+/* TYPEWRITER EFFECT */
+.typewriter {
+    overflow: hidden;
+    border-right: 2px solid var(--accent);
+    white-space: nowrap;
+    animation: typing 3s steps(30, end), blink 0.7s infinite;
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 260px }
+}
+
+@keyframes blink {
+    50% { border-color: transparent }
+}
+
+/* LAYOUT */
+.container {
+    display: flex;
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 220px;
+    background: rgba(0,0,0,0.7);
+    padding: 15px;
+    border-right: 1px solid var(--border);
+}
+
+.sidebar a {
+    display: block;
+    color: var(--accent);
+    margin: 8px 0;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.sidebar a:hover {
+    text-shadow: 0 0 8px var(--accent);
+}
+
+/* CONTENT */
+.content {
+    flex: 1;
+    padding: 20px;
+}
+
+/* BOXES */
+.infobox, .section {
+    background: rgba(0,0,0,0.6);
+    border: 1px solid var(--border);
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0,255,159,0.1);
+}
+
+/* HEADINGS */
+h2 {
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 5px;
+}
+
+/* TABLE */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+td, th {
+    border: 1px solid var(--border);
+    padding: 8px;
+}
+
+/* GLOW BUTTON */
+.toggle-btn {
+    background: black;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    padding: 6px 10px;
+    cursor: pointer;
+}
+
+.toggle-btn:hover {
+    box-shadow: 0 0 10px var(--accent);
+}
+
+/* FADE-IN ANIMATION */
+.section {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 1s forwards;
+}
+
+.section:nth-child(1) { animation-delay: 0.2s; }
+.section:nth-child(2) { animation-delay: 0.4s; }
+.section:nth-child(3) { animation-delay: 0.6s; }
+.section:nth-child(4) { animation-delay: 0.8s; }
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="matrix"></canvas>
+
+<header>
+<div class="typewriter">> Cybersecurity Wiki_</div>
+<button class="toggle-btn" onclick="toggleMode()">Toggle Mode</button>
+</header>
+
+<div class="container">
+
+<div class="sidebar">
+    <h3>Navigation</h3>
+    <a href="#overview">Overview</a>
+    <a href="#threats">Threats</a>
+    <a href="#protection">Protection</a>
+    <a href="#tools">Tools</a>
+</div>
+
+<div class="content">
+
+<div class="infobox">
+    <h3>System Info</h3>
+    <p>Status: Secure</p>
+    <p>Focus: Cyber Defense</p>
+</div>
+
+<div class="section" id="overview">
+    <h2>Overview</h2>
+    <p>Cybersecurity protects systems from digital attacks and data breaches.</p>
+</div>
+
+<div class="section" id="threats">
+    <h2>Threats</h2>
+    <ul>
+        <li>Malware</li>
+        <li>Phishing</li>
+        <li>DDoS</li>
+        <li>Password attacks</li>
+    </ul>
+</div>
+
+<div class="section" id="protection">
+    <h2>Protection</h2>
+    <ul>
+        <li>Strong passwords</li>
+        <li>2FA enabled</li>
+        <li>Updates</li>
+    </ul>
+</div>
+
+<div class="section" id="tools">
+    <h2>Tools</h2>
+    <ul>
+        <li>Antivirus</li>
+        <li>VPN</li>
+        <li>Password manager</li>
+    </ul>
+</div>
+
+</div>
+</div>
+
+<script>
+// MATRIX EFFECT
+const canvas = document.getElementById("matrix");
+const ctx = canvas.getContext("2d");
+
+canvas.height = window.innerHeight;
+canvas.width = window.innerWidth;
+
+const letters = "01";
+const fontSize = 14;
+const columns = canvas.width / fontSize;
+
+const drops = Array.from({length: columns}).fill(1);
+
+function drawMatrix() {
+    ctx.fillStyle = "rgba(0,0,0,0.05)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = "#00ff9f";
+    ctx.font = fontSize + "px monospace";
+
+    drops.forEach((y, i) => {
+        const text = letters[Math.floor(Math.random()*letters.length)];
+        ctx.fillText(text, i * fontSize, y * fontSize);
+
+        if (y * fontSize > canvas.height && Math.random() > 0.975)
+            drops[i] = 0;
+
+        drops[i]++;
+    });
+}
+
+setInterval(drawMatrix, 50);
+
+// TOGGLE MODE (optional fallback)
+function toggleMode() {
+    document.body.classList.toggle("light");
+}
+</script>
+
+</body>
+</html>
