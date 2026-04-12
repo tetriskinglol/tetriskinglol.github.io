@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tor Network - Cybersecurity Wiki</title>
+
+<style>
+:root {
+    --bg: #0d1117;
+    --text: #00ff9f;
+    --box: #161b22;
+    --border: #30363d;
+    --accent: #00ff9f;
+}
+
+body {
+    margin: 0;
+    font-family: "Courier New", monospace;
+    background: var(--bg);
+    color: var(--text);
+}
+
+/* MATRIX BACKGROUND */
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+/* HEADER */
+header {
+    padding: 15px;
+    font-size: 24px;
+    background: rgba(0,0,0,0.8);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+}
+
+/* TYPEWRITER */
+.typewriter {
+    overflow: hidden;
+    border-right: 2px solid var(--accent);
+    white-space: nowrap;
+    animation: typing 3s steps(30, end), blink 0.7s infinite;
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 260px }
+}
+
+@keyframes blink {
+    50% { border-color: transparent }
+}
+
+/* CONTENT */
+.content {
+    padding: 20px;
+}
+
+.section {
+    background: rgba(0,0,0,0.6);
+    border: 1px solid var(--border);
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0,255,159,0.1);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 1s forwards;
+}
+
+.section:nth-child(1) { animation-delay: 0.2s; }
+.section:nth-child(2) { animation-delay: 0.4s; }
+.section:nth-child(3) { animation-delay: 0.6s; }
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+h2 {
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 5px;
+}
+
+a {
+    color: var(--accent);
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="matrix"></canvas>
+
+<header>
+<div class="typewriter">> Tor Network_</div>
+<a href="index.html">← Back</a>
+</header>
+
+<div class="content">
+
+<div class="section">
+<h2>What is Tor?</h2>
+<p>
+Tor (The Onion Router) is a privacy-focused network that allows users to browse the internet anonymously.
+It works by routing your connection through multiple volunteer-run servers (nodes), hiding your real IP address.
+</p>
+</div>
+
+<div class="section">
+<h2>How the Tor Network Works</h2>
+<p>
+Tor uses a technique called <b>onion routing</b>:
+</p>
+<ul>
+<li>Your data is encrypted multiple times</li>
+<li>It passes through 3 random nodes (entry, relay, exit)</li>
+<li>Each node only knows the previous and next step</li>
+</ul>
+<p>
+This makes tracking the original user extremely difficult.
+</p>
+</div>
+
+<div class="section">
+<h2>Key Features</h2>
+<ul>
+<li>Anonymity and privacy</li>
+<li>Access to .onion websites</li>
+<li>Bypasses censorship</li>
+<li>Decentralized network</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>Risks & Limitations</h2>
+<ul>
+<li>Slower internet speeds</li>
+<li>Exit nodes can see unencrypted traffic</li>
+<li>Used by both privacy advocates and criminals</li>
+</ul>
+</div>
+
+</div>
+
+<script>
+// MATRIX EFFECT (same as main page)
+const canvas = document.getElementById("matrix");
+const ctx = canvas.getContext("2d");
+
+canvas.height = window.innerHeight;
+canvas.width = window.innerWidth;
+
+const letters = "01";
+const fontSize = 14;
+const columns = canvas.width / fontSize;
+
+const drops = Array.from({length: columns}).fill(1);
+
+function drawMatrix() {
+    ctx.fillStyle = "rgba(0,0,0,0.05)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = "#00ff9f";
+    ctx.font = fontSize + "px monospace";
+
+    drops.forEach((y, i) => {
+        const text = letters[Math.floor(Math.random()*letters.length)];
+        ctx.fillText(text, i * fontSize, y * fontSize);
+
+        if (y * fontSize > canvas.height && Math.random() > 0.975)
+            drops[i] = 0;
+
+        drops[i]++;
+    });
+}
+
+function animate() {
+    drawMatrix();
+    requestAnimationFrame(animate);
+}
+animate();
+
+window.addEventListener("resize", () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+});
+</script>
+
+</body>
+</html>
