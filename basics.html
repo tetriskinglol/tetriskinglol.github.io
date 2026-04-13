@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HTML Basics - Cyber Wiki</title>
+
+<style>
+:root {
+    --bg: #0d1117;
+    --text: #00ff9f;
+    --box: #161b22;
+    --border: #30363d;
+    --accent: #00ff9f;
+}
+
+body {
+    margin: 0;
+    font-family: "Courier New", monospace;
+    background: black;
+    color: var(--text);
+}
+
+/* HEADER */
+header {
+    padding: 15px;
+    font-size: 24px;
+    background: rgba(0,0,0,0.8);
+    border-bottom: 1px solid var(--border);
+}
+
+/* TYPEWRITER */
+.typewriter {
+    overflow: hidden;
+    border-right: 2px solid var(--accent);
+    white-space: nowrap;
+    animation: typing 3s steps(30, end), blink 0.7s infinite;
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 260px }
+}
+
+@keyframes blink {
+    50% { border-color: transparent }
+}
+
+/* LAYOUT */
+.container {
+    display: flex;
+}
+
+.sidebar {
+    width: 200px;
+    padding: 15px;
+    border-right: 1px solid var(--border);
+}
+
+.sidebar a {
+    display: block;
+    color: var(--accent);
+    margin: 8px 0;
+    text-decoration: none;
+}
+
+.sidebar a:hover {
+    text-shadow: 0 0 8px var(--accent);
+}
+
+.content {
+    flex: 1;
+    padding: 20px;
+}
+
+/* BOXES */
+.section {
+    background: rgba(0,0,0,0.6);
+    border: 1px solid var(--border);
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+/* CODE STYLE */
+code {
+    display: block;
+    background: #000;
+    padding: 10px;
+    border: 1px solid var(--border);
+    margin-top: 10px;
+    color: #9cffd0;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="typewriter">> HTML Basics_</div>
+</header>
+
+<div class="container">
+
+<div class="sidebar">
+    <h3>Topics</h3>
+    <a href="#structure">Structure</a>
+    <a href="#headings">Headings</a>
+    <a href="#paragraphs">Paragraphs</a>
+    <a href="#links">Links</a>
+    <a href="#images">Images</a>
+    <a href="#lists">Lists</a>
+</div>
+
+<div class="content">
+
+<div class="section" id="structure">
+    <h2>Basic Structure</h2>
+    <p>Every HTML page starts like this:</p>
+    <code>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Page Title&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+    </code>
+</div>
+
+<div class="section" id="headings">
+    <h2>Headings</h2>
+    <p>Headings go from h1 (biggest) to h6 (smallest):</p>
+    <code>
+&lt;h1&gt;Main Title&lt;/h1&gt;
+&lt;h2&gt;Subheading&lt;/h2&gt;
+&lt;h3&gt;Smaller heading&lt;/h3&gt;
+    </code>
+</div>
+
+<div class="section" id="paragraphs">
+    <h2>Paragraphs</h2>
+    <p>Used for normal text:</p>
+    <code>
+&lt;p&gt;This is a paragraph&lt;/p&gt;
+    </code>
+</div>
+
+<div class="section" id="links">
+    <h2>Links</h2>
+    <p>Links let you navigate to other pages:</p>
+    <code>
+&lt;a href="https://example.com"&gt;Visit site&lt;/a&gt;
+    </code>
+</div>
+
+<div class="section" id="images">
+    <h2>Images</h2>
+    <p>Display images using the img tag:</p>
+    <code>
+&lt;img src="image.jpg" alt="description"&gt;
+    </code>
+</div>
+
+<div class="section" id="lists">
+    <h2>Lists</h2>
+    <p>Unordered (bullets):</p>
+    <code>
+&lt;ul&gt;
+  &lt;li&gt;Item 1&lt;/li&gt;
+  &lt;li&gt;Item 2&lt;/li&gt;
+&lt;/ul&gt;
+    </code>
+
+    <p>Ordered (numbers):</p>
+    <code>
+&lt;ol&gt;
+  &lt;li&gt;First&lt;/li&gt;
+  &lt;li&gt;Second&lt;/li&gt;
+&lt;/ol&gt;
+    </code>
+</div>
+
+</div>
+</div>
+
+</body>
+</html>
