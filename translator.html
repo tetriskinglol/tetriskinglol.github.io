@@ -165,26 +165,47 @@ window.addEventListener("resize", () => {
     canvas.height = window.innerHeight;
 });
 
-// TRANSLATOR
 function translate() {
     const input = document.getElementById("input").value;
+    const lines = input.split("\n");
 
-    // Extract text inside quotes
-    let match = input.match(/"(.*?)"/);
+    let output = [];
 
-    if (match) {
-        let text = match[1];
+    lines.forEach(line => {
 
-        // Simple "glitch" effect
-        let output = text
-            .replace(/o/g, "p")
-            .replace(/e/g, "3")
-            .replace(/a/g, "@");
+        let printMatch = line.match(/print\((.*?)\)/);
+        if (printMatch) {
+            let content = printMatch[1].replace(/['"]/g, "");
+            output.push("OUTPUT: " + glitch(content));
+            return;
+        }
 
-        document.getElementById("output").textContent = output;
-    } else {
-        document.getElementById("output").textContent = "Invalid input.";
-    }
+        let varMatch = line.match(/(\w+)\s*=\s*(.+)/);
+        if (varMatch) {
+            output.push("SET " + varMatch[1] + " = " + varMatch[2]);
+            return;
+        }
+
+        if (line.includes("for")) {
+            output.push("LOOP DETECTED → " + glitch(line));
+            return;
+        }
+
+        if (line.trim() === "") {
+            return;
+        }
+
+        output.push("UNKNOWN → " + glitch(line));
+    });
+
+    document.getElementById("output").textContent = output.join("\n");
+}
+
+function glitch(text) {
+    return text
+        .replace(/o/g, "0")
+        .replace(/e/g, "3")
+        .replace(/a/g, "@");
 }
 </script>
 
