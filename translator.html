@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Code Translator</title>
+
+<style>
+:root {
+    --text: #00ff9f;
+    --border: #30363d;
+}
+
+body {
+    margin: 0;
+    font-family: monospace;
+    background: black;
+    color: var(--text);
+}
+
+/* MATRIX */
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+/* HEADER */
+header {
+    padding: 15px;
+    border-bottom: 1px solid var(--border);
+}
+
+/* LAYOUT */
+.container {
+    display: flex;
+}
+
+.sidebar {
+    width: 200px;
+    padding: 15px;
+    border-right: 1px solid var(--border);
+}
+
+.sidebar a {
+    display: block;
+    color: var(--text);
+    margin: 8px 0;
+    text-decoration: none;
+}
+
+.content {
+    flex: 1;
+    padding: 20px;
+}
+
+/* BOX */
+.box {
+    background: rgba(0,0,0,0.6);
+    border: 1px solid var(--border);
+    padding: 15px;
+}
+
+/* INPUT / OUTPUT */
+textarea {
+    width: 100%;
+    height: 100px;
+    background: black;
+    color: var(--text);
+    border: 1px solid var(--border);
+    margin-bottom: 10px;
+    padding: 10px;
+    font-family: monospace;
+}
+
+button {
+    background: black;
+    border: 1px solid var(--text);
+    color: var(--text);
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+button:hover {
+    box-shadow: 0 0 10px var(--text);
+}
+
+.output {
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid var(--border);
+    min-height: 40px;
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="matrix"></canvas>
+
+<header>
+> Code Translator_
+</header>
+
+<div class="container">
+
+<div class="sidebar">
+    <h3>Tools</h3>
+    <a href="#">Translator</a>
+</div>
+
+<div class="content">
+
+<div class="box">
+    <h2>Code Translator</h2>
+
+    <textarea id="input" placeholder='Type code like: print("hello, world!")'></textarea>
+
+    <button onclick="translate()">Translate</button>
+
+    <div class="output" id="output"></div>
+</div>
+
+</div>
+</div>
+
+<script>
+// MATRIX
+const canvas = document.getElementById("matrix");
+const ctx = canvas.getContext("2d");
+
+canvas.height = window.innerHeight;
+canvas.width = window.innerWidth;
+
+const letters = "01";
+const fontSize = 14;
+const columns = canvas.width / fontSize;
+
+const drops = Array.from({length: columns}).fill(1);
+
+function drawMatrix() {
+    ctx.fillStyle = "rgba(0,0,0,0.05)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = "#00ff9f";
+    ctx.font = fontSize + "px monospace";
+
+    drops.forEach((y, i) => {
+        const text = letters[Math.floor(Math.random()*letters.length)];
+        ctx.fillText(text, i * fontSize, y * fontSize);
+
+        if (y * fontSize > canvas.height && Math.random() > 0.975)
+            drops[i] = 0;
+
+        drops[i]++;
+    });
+}
+
+setInterval(drawMatrix, 50);
+
+// RESIZE FIX
+window.addEventListener("resize", () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+});
+
+// TRANSLATOR
+function translate() {
+    const input = document.getElementById("input").value;
+
+    // Extract text inside quotes
+    let match = input.match(/"(.*?)"/);
+
+    if (match) {
+        let text = match[1];
+
+        // Simple "glitch" effect
+        let output = text
+            .replace(/o/g, "p")
+            .replace(/e/g, "3")
+            .replace(/a/g, "@");
+
+        document.getElementById("output").textContent = output;
+    } else {
+        document.getElementById("output").textContent = "Invalid input.";
+    }
+}
+</script>
+
+</body>
+</html>
