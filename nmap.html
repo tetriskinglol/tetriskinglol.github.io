@@ -3,88 +3,85 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nmap - Cyber Wiki</title>
+<title>Nmap - Cybersecurity Docs</title>
 
 <style>
 :root {
-    --text: #00ff9f;
+    --bg: #0d1117;
+    --text: #c9d1d9;
+    --accent: #58a6ff;
     --border: #30363d;
 }
 
 body {
     margin: 0;
-    font-family: monospace;
-    background: black;
+    font-family: Arial, sans-serif;
+    background: var(--bg);
     color: var(--text);
-}
-
-/* MATRIX */
-canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: -1;
 }
 
 /* HEADER */
 header {
     padding: 15px;
+    font-size: 22px;
     border-bottom: 1px solid var(--border);
-}
-
-/* TYPEWRITER */
-.typewriter {
-    overflow: hidden;
-    border-right: 2px solid var(--text);
-    white-space: nowrap;
-    animation: typing 3s steps(30, end), blink 0.7s infinite;
-}
-
-@keyframes typing {
-    from { width: 0 }
-    to { width: 200px }
-}
-
-@keyframes blink {
-    50% { border-color: transparent }
 }
 
 /* LAYOUT */
 .container {
     display: flex;
+    min-height: 100vh;
 }
 
+/* SIDEBAR */
 .sidebar {
-    width: 200px;
-    padding: 15px;
+    width: 220px;
     border-right: 1px solid var(--border);
+    padding: 15px;
 }
 
-.sidebar a {
+.category {
+    font-weight: bold;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+.links {
+    display: none;
+    margin-left: 10px;
+}
+
+.links a {
     display: block;
-    color: var(--text);
-    margin: 8px 0;
     text-decoration: none;
+    color: var(--text);
+    padding: 5px 0;
 }
 
-.sidebar a:hover {
-    text-shadow: 0 0 8px var(--text);
+.links a:hover {
+    color: var(--accent);
 }
 
+/* CONTENT */
 .content {
     flex: 1;
     padding: 20px;
 }
 
-/* BOX */
-.section {
-    background: rgba(0,0,0,0.6);
+.box {
     border: 1px solid var(--border);
     padding: 15px;
     margin-bottom: 20px;
+    background: #161b22;
 }
 
-/* CODE */
+/* WARNING */
+.warning {
+    color: #ffcc00;
+    font-weight: bold;
+}
+
+/* CODE BLOCK */
 code {
     display: block;
     background: black;
@@ -98,113 +95,90 @@ code {
 
 <body>
 
-<canvas id="matrix"></canvas>
-
 <header>
-<div class="typewriter">> Nmap_</div>
+Cybersecurity Docs
 </header>
 
 <div class="container">
 
+<!-- SIDEBAR -->
 <div class="sidebar">
-    <h3>Navigation</h3>
-    <a href="#overview">Overview</a>
-    <a href="#features">Features</a>
-    <a href="#usage">Usage</a>
-    <a href="#examples">Examples</a>
+
+    <div class="category" onclick="toggle('basics')">Basics</div>
+    <div class="links" id="basics">
+        <a href="basics.html">HTML</a>
+    </div>
+
+    <div class="category" onclick="toggle('tools')">Tools</div>
+    <div class="links" id="tools">
+        <a href="nmap.html">Nmap</a>
+        <a href="tor.html">Tor</a>
+    </div>
+
+    <div class="category" onclick="toggle('interactive')">Interactive</div>
+    <div class="links" id="interactive">
+        <a href="terminal.html">Terminal</a>
+    </div>
+
 </div>
 
+<!-- CONTENT -->
 <div class="content">
 
-<div class="section" id="overview">
-    <h2>Overview</h2>
-    <p>
-        Nmap (Network Mapper) is a tool used to scan networks and discover devices, open ports, 
-        and services running on a system.
-    </p>
+    <div class="box">
+       <div class="warning">⚠️ LEGAL WARNING</div>
+<p>
+Only scan systems you own or have explicit permission to test.
+Unauthorized network scanning may be illegal.
+The example shown uses a local IP address for educational purposes.
+</p>
+    </div>
+
+    <div class="box">
+        <h2>What is Nmap?</h2>
+        <p>Nmap (Network Mapper) is a tool used to scan networks and discover devices, open ports, and services running on a system.</p>
+    </div>
+
+    <div class="box">
+        <h2>What it Can Do</h2>
+        <ul>
+            <li>Detect active devices on a network</li>
+            <li>Find open ports</li>
+            <li>Identify running services</li>
+            <li>Check for potential security risks</li>
+        </ul>
+    </div>
+
+    <div class="box">
+        <h2>Example Command</h2>
+        <p>This is a basic example of how Nmap is used:</p>
+
+        <code>
+nmap 192.168.1.1
+        </code>
+
+        <p>This scans a device on your local network.</p>
+    </div>
+
+    <div class="box">
+        <h2>Important Notes</h2>
+        <ul>
+            <li>Only scan networks you have permission to test</li>
+            <li>Some scans can be detected by security systems</li>
+            <li>Nmap is used by both security professionals and attackers</li>
+        </ul>
+    </div>
+
 </div>
 
-<div class="section" id="features">
-    <h2>Features</h2>
-    <ul>
-        <li>Host discovery</li>
-        <li>Port scanning</li>
-        <li>Service detection</li>
-        <li>Operating system detection</li>
-    </ul>
-</div>
-
-<div class="section" id="usage">
-    <h2>Basic Usage</h2>
-    <p>Run a simple scan:</p>
-    <code>nmap 192.168.1.1</code>
-
-    <p>Scan a range of ports:</p>
-    <code>nmap -p 1-1000 192.168.1.1</code>
-</div>
-
-<div class="section" id="examples">
-    <h2>Examples</h2>
-
-    <p>Quick scan:</p>
-    <code>nmap -F 192.168.1.1</code>
-
-    <p>Detailed scan:</p>
-    <code>nmap -A 192.168.1.1</code>
-</div>
-
-</div>
-</div>
-    <div class="section">
-    <h2>⚠️ Legal Notice</h2>
-    <p>
-        Nmap is a legitimate network scanning tool used for security testing and system administration.
-        It should only be used on networks and systems that you own or have explicit permission to test.
-    </p>
-    <p>
-        Unauthorized scanning of networks may be illegal and could result in penalties.
-    </p>
 </div>
 
 <script>
-// MATRIX
-const canvas = document.getElementById("matrix");
-const ctx = canvas.getContext("2d");
-
-canvas.height = window.innerHeight;
-canvas.width = window.innerWidth;
-
-const letters = "01";
-const fontSize = 14;
-const columns = canvas.width / fontSize;
-
-const drops = Array.from({length: columns}).fill(1);
-
-function drawMatrix() {
-    ctx.fillStyle = "rgba(0,0,0,0.05)";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    ctx.fillStyle = "#00ff9f";
-    ctx.font = fontSize + "px monospace";
-
-    drops.forEach((y, i) => {
-        const text = letters[Math.floor(Math.random()*letters.length)];
-        ctx.fillText(text, i * fontSize, y * fontSize);
-
-        if (y * fontSize > canvas.height && Math.random() > 0.975)
-            drops[i] = 0;
-
-        drops[i]++;
-    });
+function toggle(id) {
+    const section = document.getElementById(id);
+    section.style.display =
+        section.style.display === "block" ? "none" : "block";
 }
-
-setInterval(drawMatrix, 50);
-
-// resize fix
-window.addEventListener("resize", () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-});
 </script>
 
 </body>
