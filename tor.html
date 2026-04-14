@@ -3,209 +3,166 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tor Network - Cybersecurity Wiki</title>
+<title>Tor - Cybersecurity Docs</title>
 
 <style>
 :root {
     --bg: #0d1117;
-    --text: #00ff9f;
-    --box: #161b22;
+    --text: #c9d1d9;
+    --accent: #58a6ff;
     --border: #30363d;
-    --accent: #00ff9f;
 }
 
 body {
     margin: 0;
-    font-family: "Courier New", monospace;
+    font-family: Arial, sans-serif;
     background: var(--bg);
     color: var(--text);
-}
-
-/* MATRIX BACKGROUND */
-canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: -1;
 }
 
 /* HEADER */
 header {
     padding: 15px;
-    font-size: 24px;
-    background: rgba(0,0,0,0.8);
+    font-size: 22px;
     border-bottom: 1px solid var(--border);
+}
+
+/* LAYOUT */
+.container {
     display: flex;
-    justify-content: space-between;
+    min-height: 100vh;
 }
 
-/* TYPEWRITER */
-.typewriter {
-    overflow: hidden;
-    border-right: 2px solid var(--accent);
-    white-space: nowrap;
-    animation: typing 3s steps(30, end), blink 0.7s infinite;
+/* SIDEBAR */
+.sidebar {
+    width: 220px;
+    border-right: 1px solid var(--border);
+    padding: 15px;
 }
 
-@keyframes typing {
-    from { width: 0 }
-    to { width: 260px }
+.category {
+    font-weight: bold;
+    margin-top: 15px;
+    cursor: pointer;
 }
 
-@keyframes blink {
-    50% { border-color: transparent }
+.links {
+    display: none;
+    margin-left: 10px;
+}
+
+.links a {
+    display: block;
+    text-decoration: none;
+    color: var(--text);
+    padding: 5px 0;
+}
+
+.links a:hover {
+    color: var(--accent);
 }
 
 /* CONTENT */
 .content {
+    flex: 1;
     padding: 20px;
 }
 
-.section {
-    background: rgba(0,0,0,0.6);
+.box {
     border: 1px solid var(--border);
     padding: 15px;
     margin-bottom: 20px;
-    box-shadow: 0 0 10px rgba(0,255,159,0.1);
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeIn 1s forwards;
+    background: #161b22;
 }
 
-.section:nth-child(1) { animation-delay: 0.2s; }
-.section:nth-child(2) { animation-delay: 0.4s; }
-.section:nth-child(3) { animation-delay: 0.6s; }
-
-@keyframes fadeIn {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-h2 {
-    border-bottom: 1px solid var(--accent);
-    padding-bottom: 5px;
-}
-
-a {
-    color: var(--accent);
+/* WARNING */
+.warning {
+    color: #ffcc00;
+    font-weight: bold;
 }
 </style>
 </head>
 
 <body>
 
-<canvas id="matrix"></canvas>
-
 <header>
-<div class="typewriter">> Tor Network_</div>
-<a href="index.html">← Back</a>
+Cybersecurity Docs
 </header>
 
+<div class="container">
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+
+    <div class="category" onclick="toggle('basics')">Basics</div>
+    <div class="links" id="basics">
+        <a href="basics.html">HTML</a>
+    </div>
+
+    <div class="category" onclick="toggle('tools')">Tools</div>
+    <div class="links" id="tools">
+        <a href="nmap.html">Nmap</a>
+        <a href="tor.html">Tor</a>
+    </div>
+
+    <div class="category" onclick="toggle('interactive')">Interactive</div>
+    <div class="links" id="interactive">
+        <a href="terminal.html">Terminal</a>
+    </div>
+
+</div>
+
+<!-- CONTENT -->
 <div class="content">
 
-<div class="section">
-<h2>What is Tor?</h2>
-<p>
-Tor (The Onion Router) is a privacy-focused network that allows users to browse the internet anonymously.
-It works by routing your connection through multiple volunteer-run servers (nodes), hiding your real IP address.
-</p>
-</div>
+    <div class="box">
+        <div class="warning">⚠️ LEGAL WARNING</div>
+        <p>Using Tor is legal in most countries, but using it for illegal activities is not. Do not attempt to buy illegal goods or access illegal content.</p>
+    </div>
 
-<div class="section">
-<h2>How the Tor Network Works</h2>
-<p>
-Tor uses a technique called <b>onion routing</b>:
-</p>
-<ul>
-<li>Your data is encrypted multiple times</li>
-<li>It passes through 3 random nodes (entry, relay, exit)</li>
-<li>Each node only knows the previous and next step</li>
-</ul>
-<p>
-This makes tracking the original user extremely difficult.
-</p>
-</div>
+    <div class="box">
+        <h2>What is Tor?</h2>
+        <p>Tor (The Onion Router) is a network that helps you stay anonymous online by routing your internet traffic through multiple servers.</p>
+    </div>
 
-<div class="section">
-<h2>Key Features</h2>
-<ul>
-<li>Anonymity and privacy</li>
-<li>Access to .onion websites</li>
-<li>Bypasses censorship</li>
-<li>Decentralized network</li>
-</ul>
-</div>
+    <div class="box">
+        <h2>How it Works</h2>
+        <ul>
+            <li>Your traffic is encrypted</li>
+            <li>It passes through multiple nodes</li>
+            <li>Each node only knows the previous and next step</li>
+            <li>This makes tracking very difficult</li>
+        </ul>
+    </div>
 
-<div class="section">
-<h2>Risks & Limitations</h2>
-<ul>
-<li>Slower internet speeds</li>
-<li>Exit nodes can see unencrypted traffic</li>
-<li>Used by both privacy advocates and criminals</li>
-</ul>
-</div>
+    <div class="box">
+        <h2>Common Uses</h2>
+        <ul>
+            <li>Privacy protection</li>
+            <li>Bypassing censorship</li>
+            <li>Anonymous browsing</li>
+        </ul>
+    </div>
+
+    <div class="box">
+        <h2>Important Notes</h2>
+        <ul>
+            <li>Tor does not make you completely invisible</li>
+            <li>You can still be tracked if you log into accounts</li>
+            <li>Always use it responsibly</li>
+        </ul>
+    </div>
 
 </div>
-    <div class="section">
-    <h2>⚠️ Legal Notice</h2>
-    <p>
-        The Tor network is a privacy tool designed to help protect anonymity online.
-        It is commonly used for legitimate purposes such as protecting personal privacy
-        and accessing restricted information.
-    </p>
-    <p>
-        However, using Tor to access or purchase illegal goods or services is against the law.
-        Engaging in illegal activity on the dark web can result in serious legal consequences.
-    </p>
-    <p>
-        This page is for educational purposes only. Always follow the law and use tools responsibly.
-    </p>
+
 </div>
 
 <script>
-// MATRIX EFFECT (same as main page)
-const canvas = document.getElementById("matrix");
-const ctx = canvas.getContext("2d");
-
-canvas.height = window.innerHeight;
-canvas.width = window.innerWidth;
-
-const letters = "01";
-const fontSize = 14;
-const columns = canvas.width / fontSize;
-
-const drops = Array.from({length: columns}).fill(1);
-
-function drawMatrix() {
-    ctx.fillStyle = "rgba(0,0,0,0.05)";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    ctx.fillStyle = "#00ff9f";
-    ctx.font = fontSize + "px monospace";
-
-    drops.forEach((y, i) => {
-        const text = letters[Math.floor(Math.random()*letters.length)];
-        ctx.fillText(text, i * fontSize, y * fontSize);
-
-        if (y * fontSize > canvas.height && Math.random() > 0.975)
-            drops[i] = 0;
-
-        drops[i]++;
-    });
+function toggle(id) {
+    const section = document.getElementById(id);
+    section.style.display =
+        section.style.display === "block" ? "none" : "block";
 }
-
-function animate() {
-    drawMatrix();
-    requestAnimationFrame(animate);
-}
-animate();
-
-window.addEventListener("resize", () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-});
 </script>
 
 </body>
