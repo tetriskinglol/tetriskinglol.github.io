@@ -3,83 +3,67 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cybersecurity Wiki</title>
+<title>Cybersecurity Docs</title>
 
 <style>
 :root {
     --bg: #0d1117;
-    --text: #00ff9f;
-    --box: #161b22;
+    --text: #c9d1d9;
+    --accent: #58a6ff;
     --border: #30363d;
-    --accent: #00ff9f;
 }
 
+/* BASE */
 body {
     margin: 0;
-    font-family: "Courier New", monospace;
-    background: black;
+    font-family: Arial, sans-serif;
+    background: var(--bg);
     color: var(--text);
-    overflow-x: hidden;
-}
-
-/* MATRIX BACKGROUND */
-canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: -1;
 }
 
 /* HEADER */
 header {
     padding: 15px;
-    font-size: 24px;
-    background: rgba(0,0,0,0.8);
+    font-size: 22px;
     border-bottom: 1px solid var(--border);
-    display: flex;
-    justify-content: space-between;
-}
-
-/* TYPEWRITER EFFECT */
-.typewriter {
-    overflow: hidden;
-    border-right: 2px solid var(--accent);
-    white-space: nowrap;
-    animation: typing 3s steps(30, end), blink 0.7s infinite;
-}
-
-@keyframes typing {
-    from { width: 0 }
-    to { width: 260px }
-}
-
-@keyframes blink {
-    50% { border-color: transparent }
+    background: #0d1117;
 }
 
 /* LAYOUT */
 .container {
     display: flex;
+    min-height: 100vh;
 }
 
 /* SIDEBAR */
 .sidebar {
     width: 220px;
-    background: rgba(0,0,0,0.7);
-    padding: 15px;
     border-right: 1px solid var(--border);
+    padding: 15px;
 }
 
-.sidebar a {
+/* CATEGORY */
+.category {
+    font-weight: bold;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+/* HIDDEN LINKS */
+.links {
+    display: none;
+    margin-left: 10px;
+}
+
+.links a {
     display: block;
-    color: var(--accent);
-    margin: 8px 0;
     text-decoration: none;
-    transition: 0.2s;
+    color: var(--text);
+    padding: 5px 0;
 }
 
-.sidebar a:hover {
-    text-shadow: 0 0 8px var(--accent);
+.links a:hover {
+    color: var(--accent);
 }
 
 /* CONTENT */
@@ -89,214 +73,91 @@ header {
 }
 
 /* BOXES */
-.infobox, .section {
-    background: rgba(0,0,0,0.6);
+.box {
     border: 1px solid var(--border);
     padding: 15px;
     margin-bottom: 20px;
-    box-shadow: 0 0 10px rgba(0,255,159,0.1);
+    background: #161b22;
 }
 
-/* HEADINGS */
-h2 {
-    border-bottom: 1px solid var(--accent);
-    padding-bottom: 5px;
-}
-
-/* TABLE */
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-td, th {
-    border: 1px solid var(--border);
-    padding: 8px;
-}
-
-/* GLOW BUTTON */
-.toggle-btn {
-    background: black;
-    border: 1px solid var(--accent);
-    color: var(--accent);
-    padding: 6px 10px;
-    cursor: pointer;
-}
-
-.toggle-btn:hover {
-    box-shadow: 0 0 10px var(--accent);
-}
-
-/* FADE-IN ANIMATION */
-.section {
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeIn 1s forwards;
-}
-
-.section:nth-child(1) { animation-delay: 0.2s; }
-.section:nth-child(2) { animation-delay: 0.4s; }
-.section:nth-child(3) { animation-delay: 0.6s; }
-.section:nth-child(4) { animation-delay: 0.8s; }
-
-@keyframes fadeIn {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+/* WARNING */
+.warning {
+    color: #ffcc00;
+    font-weight: bold;
 }
 </style>
 </head>
 
 <body>
 
-<canvas id="matrix"></canvas>
-
 <header>
-<div class="typewriter">> Cybersecurity Wiki_</div>
-<button class="toggle-btn" onclick="toggleMode()">Toggle Mode</button>
+Cybersecurity Docs
 </header>
 
 <div class="container">
 
-    <div class="sidebar">
-        <h3>Documentation</h3>
+<!-- SIDEBAR -->
+<div class="sidebar">
 
-        <div class="category">Basics:</div>
+    <div class="category" onclick="toggle('basics')">Basics</div>
+    <div class="links" id="basics">
         <a href="basics.html">HTML</a>
-
-        <div class="category">Security Tools:</div>
-        <a href="nmap.html">Nmap</a>
-        <a href="tor.html">Tor</a>
-
-        <div class="category">Interactive Tools:</div>
-        <a href="terminal.html">terminal</a>
     </div>
 
-    <div class="content">
-
-        <div class="infobox">
-            <h3>⚠️ legal notice</h3>
-            <p>this site does not promote any illegal advice or content</p>
-            <p>please obey the law and stay safe</p>
-        </div>
-
-        <div class="section" id="overview">
-            <h2>Overview</h2>
-            <p>Cybersecurity protects systems from digital attacks and data breaches.</p>
-        </div>
-
-        <div class="section" id="threats">
-            <h2>Threats</h2>
-            <ul>
-                <li>Malware</li>
-                <li>Phishing</li>
-                <li>DDoS</li>
-                <li>Password attacks</li>
-            </ul>
-        </div>
-
-     <div class="container">
-
-    <div class="sidebar">
-        <h3>Documentation</h3>
-
-        <div class="category">Basics:</div>
-        <a href="basics.html">HTML</a>
-
-        <div class="category">Security Tools:</div>
+    <div class="category" onclick="toggle('tools')">Tools</div>
+    <div class="links" id="tools">
         <a href="nmap.html">Nmap</a>
         <a href="tor.html">Tor</a>
-
-        <div class="category">Interactive Tools:</div>
-        <a href="terminal.html">terminal</a>
     </div>
 
-    <div class="content">
-
-        <div class="infobox">
-            <h3>⚠️ legal notice</h3>
-            <p>this site does not promote any illegal advice or content</p>
-            <p>please obey the law and stay safe</p>
-        </div>
-
-        <div class="section" id="overview">
-            <h2>Overview</h2>
-            <p>Cybersecurity protects systems from digital attacks and data breaches.</p>
-        </div>
-
-        <div class="section" id="threats">
-            <h2>Threats</h2>
-            <ul>
-                <li>Malware</li>
-                <li>Phishing</li>
-                <li>DDoS</li>
-                <li>Password attacks</li>
-            </ul>
-        </div>
-
-        <div class="section" id="protection">
-            <h2>Protection</h2>
-            <ul>
-                <li>Strong passwords</li>
-                <li>2FA enabled</li>
-                <li>Updates</li>
-            </ul>
-        </div>
-
-        <div class="section" id="tools">
-            <h2>Tools</h2>
-            <ul>
-                <li>Antivirus</li>
-                <li>VPN</li>
-                <li>Password manager</li>
-            </ul>
-        </div>
-
-    </div> 
-
-</div> 
+    <div class="category" onclick="toggle('interactive')">Interactive</div>
+    <div class="links" id="interactive">
+        <a href="terminal.html">Terminal</a>
+    </div>
 
 </div>
+
+<!-- CONTENT -->
+<div class="content">
+
+    <div class="box">
+        <div class="warning">⚠️ WARNING</div>
+        <p>This site is for educational purposes only. Do not use knowledge for illegal activity.</p>
+    </div>
+
+    <div class="box">
+        <h2>Cybersecurity</h2>
+        <p>Cybersecurity is the practice of protecting systems, networks, and data from digital attacks.</p>
+    </div>
+
+    <div class="box">
+        <h2>Types of Attacks</h2>
+        <ul>
+            <li>Malware</li>
+            <li>Phishing</li>
+            <li>DDoS</li>
+            <li>Password attacks</li>
+        </ul>
+    </div>
+
+    <div class="box">
+        <h2>Tools to Stay Safe</h2>
+        <ul>
+            <li>Antivirus software</li>
+            <li>VPN</li>
+            <li>Password managers</li>
+        </ul>
+    </div>
+
+</div>
+
 </div>
 
 <script>
-// MATRIX EFFECT
-const canvas = document.getElementById("matrix");
-const ctx = canvas.getContext("2d");
-
-canvas.height = window.innerHeight;
-canvas.width = window.innerWidth;
-
-const letters = "01";
-const fontSize = 14;
-const columns = canvas.width / fontSize;
-
-const drops = Array.from({length: columns}).fill(1);
-
-function drawMatrix() {
-    ctx.fillStyle = "rgba(0,0,0,0.05)";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    ctx.fillStyle = "#00ff9f";
-    ctx.font = fontSize + "px monospace";
-
-    drops.forEach((y, i) => {
-        const text = letters[Math.floor(Math.random()*letters.length)];
-        ctx.fillText(text, i * fontSize, y * fontSize);
-
-        if (y * fontSize > canvas.height && Math.random() > 0.975)
-            drops[i] = 0;
-
-        drops[i]++;
-    });
-}
-
-setInterval(drawMatrix, 50);
-
-// TOGGLE MODE (optional fallback)
-function toggleMode() {
-    document.body.classList.toggle("light");
+function toggle(id) {
+    const section = document.getElementById(id);
+    section.style.display =
+        section.style.display === "block" ? "none" : "block";
 }
 </script>
 
