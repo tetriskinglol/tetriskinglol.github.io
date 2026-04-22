@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Metasploit - Cyber Docs</title>
+
+<style>
+:root {
+    --text: #111;
+    --border: #ddd;
+    --bg: #fff;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+}
+
+/* HEADER */
+header {
+    padding: 20px;
+    font-size: 24px;
+    border-bottom: 2px solid var(--border);
+    text-align: center;
+}
+
+/* LAYOUT */
+.container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 220px;
+    border-right: 2px solid var(--border);
+    padding: 15px;
+}
+
+.sidebar h3 {
+    margin-top: 0;
+}
+
+.sidebar button {
+    width: 100%;
+    background: none;
+    border: none;
+    text-align: left;
+    padding: 8px 0;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.sidebar button:hover {
+    text-decoration: underline;
+}
+
+.submenu {
+    display: none;
+    padding-left: 10px;
+}
+
+.submenu a {
+    display: block;
+    text-decoration: none;
+    color: black;
+    margin: 5px 0;
+}
+
+/* CONTENT */
+.content {
+    flex: 1;
+    padding: 20px;
+}
+
+/* BOXES */
+.box {
+    border: 2px solid var(--border);
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+/* WARNING */
+.warning {
+    border: 2px solid red;
+    padding: 15px;
+    margin-bottom: 20px;
+    background: #fff5f5;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+Cybersecurity Docs
+</header>
+
+<div class="container">
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+    <h3>Docs</h3>
+
+    <button onclick="toggle('basics')">Basics</button>
+    <div id="basics" class="submenu">
+        <a href="basics.html">HTML</a>
+    </div>
+
+    <button onclick="toggle('tools')">Tools</button>
+    <div id="tools" class="submenu">
+        <a href="nmap.html">Nmap</a>
+        <a href="tor.html">Tor</a>
+        <a href="metasploit.html">Metasploit</a>
+    </div>
+
+    <button onclick="toggle('interactive')">Interactive</button>
+    <div id="interactive" class="submenu">
+        <a href="terminal.html">Terminal</a>
+    </div>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+<div class="warning">
+    <h3>⚠️ Legal Warning</h3>
+    <p>Metasploit is a powerful security testing tool.</p>
+    <p>Only use it on systems you own or have explicit permission to test.</p>
+    <p>Unauthorized use may be illegal.</p>
+</div>
+
+<div class="box">
+    <h2>What is Metasploit?</h2>
+    <p>Metasploit is a penetration testing framework used to find and test security vulnerabilities in systems.</p>
+</div>
+
+<div class="box">
+    <h2>What does it do?</h2>
+    <ul>
+        <li>Find vulnerabilities</li>
+        <li>Run exploit code in a controlled environment</li>
+        <li>Simulate real-world cyber attacks (ethically)</li>
+    </ul>
+</div>
+
+<div class="box">
+    <h2>Basic Commands</h2>
+<pre>
+msfconsole
+
+search exploit
+
+use exploit/example
+
+set RHOST 127.0.0.1
+
+run
+</pre>
+</div>
+
+<div class="box">
+    <h2>Why it's used</h2>
+    <p>Security professionals use Metasploit to test defenses and improve system security before attackers can exploit weaknesses.</p>
+</div>
+
+</div>
+</div>
+
+<script>
+function toggle(id) {
+    let el = document.getElementById(id);
+    el.style.display = el.style.display === "block" ? "none" : "block";
+}
+</script>
+
+</body>
+</html>
