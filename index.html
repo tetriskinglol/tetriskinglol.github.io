@@ -7,13 +7,12 @@
 
 <style>
 :root {
-    --bg: #0d1117;
-    --text: #c9d1d9;
-    --accent: #58a6ff;
-    --border: #30363d;
+    --text: #111;
+    --border: #ddd;
+    --bg: #fff;
+    --accent: #2563eb;
 }
 
-/* BASE */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -23,10 +22,21 @@ body {
 
 /* HEADER */
 header {
-    padding: 15px;
-    font-size: 22px;
-    border-bottom: 1px solid var(--border);
-    background: #0d1117;
+    padding: 20px;
+    border-bottom: 2px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.search {
+    padding: 6px;
+    border: 1px solid var(--border);
 }
 
 /* LAYOUT */
@@ -37,53 +47,93 @@ header {
 
 /* SIDEBAR */
 .sidebar {
-    width: 220px;
-    border-right: 1px solid var(--border);
+    width: 240px;
+    border-right: 2px solid var(--border);
     padding: 15px;
 }
 
-/* CATEGORY */
-.category {
-    font-weight: bold;
-    margin-top: 15px;
+.sidebar h3 {
+    margin-top: 0;
+}
+
+.sidebar button {
+    width: 100%;
+    background: none;
+    border: none;
+    text-align: left;
+    padding: 8px 0;
+    font-size: 15px;
     cursor: pointer;
 }
 
-/* HIDDEN LINKS */
-.links {
-    display: none;
-    margin-left: 10px;
+.sidebar button:hover {
+    color: var(--accent);
 }
 
-.links a {
+.submenu {
+    display: none;
+    padding-left: 10px;
+}
+
+.submenu a {
     display: block;
     text-decoration: none;
-    color: var(--text);
-    padding: 5px 0;
+    color: #333;
+    margin: 5px 0;
 }
 
-.links a:hover {
+.submenu a:hover {
     color: var(--accent);
 }
 
 /* CONTENT */
 .content {
     flex: 1;
+    padding: 30px;
+}
+
+/* HERO */
+.hero {
+    margin-bottom: 30px;
+}
+
+.hero h1 {
+    margin: 0;
+    font-size: 28px;
+}
+
+.hero p {
+    color: #555;
+}
+
+/* CARDS */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    border: 2px solid var(--border);
     padding: 20px;
+    cursor: pointer;
+    transition: 0.2s;
 }
 
-/* BOXES */
-.box {
-    border: 1px solid var(--border);
+.card:hover {
+    border-color: var(--accent);
+}
+
+.card h3 {
+    margin-top: 0;
+}
+
+/* FOOTER NOTE */
+.note {
+    margin-top: 30px;
     padding: 15px;
-    margin-bottom: 20px;
-    background: #161b22;
-}
-
-/* WARNING */
-.warning {
-    color: #ffcc00;
-    font-weight: bold;
+    border: 2px solid red;
+    background: #fff5f5;
 }
 </style>
 </head>
@@ -91,74 +141,90 @@ header {
 <body>
 
 <header>
-Cybersecurity Docs
+    <div class="logo">Cybersecurity Docs</div>
+    <input class="search" placeholder="Search...">
 </header>
 
 <div class="container">
 
 <!-- SIDEBAR -->
 <div class="sidebar">
+    <h3>Documentation</h3>
 
-    <div class="category" onclick="toggle('basics')">Basics</div>
-    <div class="links" id="basics">
-        <a href="basics.html">python</a>
+    <button onclick="toggle('basics')">Basics</button>
+    <div id="basics" class="submenu">
+        <a href="basics.html">HTML</a>
     </div>
 
-    <div class="category" onclick="toggle('tools')">Tools</div>
-    <div class="links" id="tools">
+    <button onclick="toggle('tools')">Security Tools</button>
+    <div id="tools" class="submenu">
         <a href="nmap.html">Nmap</a>
-        <a href="tor.html">Tor</a>
+        <a href="wireshark.html">Wireshark</a>
         <a href="metasploit.html">Metasploit</a>
+        <a href="maltego.html">Maltego</a>
+        <a href="tor.html">Tor</a>
     </div>
 
-    <div class="category" onclick="toggle('interactive')">Interactive</div>
-    <div class="links" id="interactive">
-        
+    <button onclick="toggle('interactive')">Interactive</button>
+    <div id="interactive" class="submenu">
+        <a href="terminal.html">Terminal</a>
     </div>
-
 </div>
 
-<!-- CONTENT -->
+<!-- MAIN CONTENT -->
 <div class="content">
 
-    <div class="box">
-        <div class="warning">⚠️ WARNING</div>
-        <p>This site is for educational purposes only. Do not use knowledge for illegal activity.</p>
-    </div>
+<div class="hero">
+    <h1>Cybersecurity Documentation</h1>
+    <p>Learn tools, concepts, and techniques used in modern cybersecurity.</p>
+</div>
 
-    <div class="box">
-        <h2>Cybersecurity</h2>
-        <p>Cybersecurity is the practice of protecting systems, networks, and data from digital attacks.</p>
-    </div>
+<div class="grid">
 
-    <div class="box">
-        <h2>Types of Attacks</h2>
-        <ul>
-            <li>Malware</li>
-            <li>Phishing</li>
-            <li>DDoS</li>
-            <li>Password attacks</li>
-        </ul>
-    </div>
+<div class="card" onclick="location.href='nmap.html'">
+    <h3>Nmap</h3>
+    <p>Network scanning and port discovery tool.</p>
+</div>
 
-    <div class="box">
-        <h2>Tools to Stay Safe</h2>
-        <ul>
-            <li>Antivirus software</li>
-            <li>VPN</li>
-            <li>Password managers</li>
-        </ul>
-    </div>
+<div class="card" onclick="location.href='wireshark.html'">
+    <h3>Wireshark</h3>
+    <p>Analyze network traffic in real time.</p>
+</div>
+
+<div class="card" onclick="location.href='metasploit.html'">
+    <h3>Metasploit</h3>
+    <p>Test vulnerabilities in a controlled environment.</p>
+</div>
+
+<div class="card" onclick="location.href='maltego.html'">
+    <h3>Maltego</h3>
+    <p>OSINT tool for mapping relationships.</p>
+</div>
+
+<div class="card" onclick="location.href='tor.html'">
+    <h3>Tor</h3>
+    <p>Anonymous routing and privacy tool.</p>
+</div>
+
+<div class="card" onclick="location.href='terminal.html'">
+    <h3>Terminal</h3>
+    <p>Interactive cybersecurity simulation.</p>
+</div>
 
 </div>
 
+<div class="note">
+    <strong>⚠️ Legal Notice:</strong>
+    This site is for educational purposes only. Only use cybersecurity tools on systems you own or have permission to test.
+</div>
+
+</div>
 </div>
 
 <script>
 function toggle(id) {
-    const section = document.getElementById(id);
-    section.style.display =
-        section.style.display === "block" ? "none" : "block";
+    let el = document.getElementById(id);
+    el.style.display = el.style.display === "block" ? "none" : "block";
 }
 </script>
 
