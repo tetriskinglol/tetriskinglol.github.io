@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tails - Cyber Docs</title>
+
+<style>
+:root {
+    --text: #111;
+    --border: #ddd;
+    --bg: #fff;
+    --accent: #2563eb;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+}
+
+/* HEADER */
+header {
+    padding: 20px;
+    border-bottom: 2px solid var(--border);
+    text-align: center;
+    font-size: 22px;
+}
+
+/* LAYOUT */
+.container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 240px;
+    border-right: 2px solid var(--border);
+    padding: 15px;
+}
+
+.sidebar button {
+    width: 100%;
+    background: none;
+    border: none;
+    text-align: left;
+    padding: 8px 0;
+    cursor: pointer;
+}
+
+.sidebar button:hover {
+    color: var(--accent);
+}
+
+.submenu {
+    display: none;
+    padding-left: 10px;
+}
+
+.submenu a {
+    display: block;
+    text-decoration: none;
+    color: #333;
+    margin: 5px 0;
+}
+
+.submenu a:hover {
+    color: var(--accent);
+}
+
+/* CONTENT */
+.content {
+    flex: 1;
+    padding: 25px;
+}
+
+/* BOX */
+.box {
+    border: 2px solid var(--border);
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+/* WARNING */
+.warning {
+    border: 2px solid red;
+    background: #fff5f5;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+Tails Documentation
+</header>
+
+<div class="container">
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+
+    <button onclick="toggle('basics')">Basics</button>
+    <div id="basics" class="submenu">
+        <a href="basics.html">HTML</a>
+    </div>
+
+    <button onclick="toggle('tools')">Security Tools</button>
+    <div id="tools" class="submenu">
+        <a href="nmap.html">Nmap</a>
+        <a href="wireshark.html">Wireshark</a>
+        <a href="metasploit.html">Metasploit</a>
+        <a href="maltego.html">Maltego</a>
+        <a href="tor.html">Tor</a>
+        <a href="tails.html">Tails</a>
+    </div>
+
+    <button onclick="toggle('interactive')">Interactive</button>
+    <div id="interactive" class="submenu">
+        <a href="terminal.html">Terminal</a>
+    </div>
+
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+<div class="warning">
+    <h3>⚠️ Legal & Safety Notice</h3>
+    <p>Tails is a privacy-focused operating system.</p>
+    <p>Using it is legal, but illegal activities performed with it are still illegal.</p>
+    <p>Always follow the law and use it responsibly.</p>
+</div>
+
+<div class="box">
+    <h2>What is Tails?</h2>
+    <p>Tails (The Amnesic Incognito Live System) is a privacy-focused operating system that runs from a USB drive and leaves no trace on the computer you use.</p>
+</div>
+
+<div class="box">
+    <h2>Key Features</h2>
+    <ul>
+        <li>Runs from a USB (no installation needed)</li>
+        <li>Forces all internet traffic through Tor</li>
+        <li>Leaves no traces after shutdown</li>
+        <li>Includes built-in privacy tools</li>
+    </ul>
+</div>
+
+<div class="box">
+    <h2>How it works</h2>
+<pre>
+1. Install Tails on a USB drive
+2. Boot your computer from the USB
+3. Use the system normally
+4. Shut down → no data is saved (unless configured)
+</pre>
+</div>
+
+<div class="box">
+    <h2>What it's used for</h2>
+    <ul>
+        <li>Privacy-focused browsing</li>
+        <li>Secure communication</li>
+        <li>Protecting identity online</li>
+    </ul>
+</div>
+
+<div class="box">
+    <h2>Important Notes</h2>
+    <ul>
+        <li>Tails improves privacy but does not guarantee anonymity</li>
+        <li>User behavior can still reveal identity</li>
+        <li>Always keep the system updated</li>
+    </ul>
+</div>
+
+</div>
+</div>
+
+<script>
+function toggle(id) {
+    let el = document.getElementById(id);
+    el.style.display = el.style.display === "block" ? "none" : "block";
+}
+</script>
+
+</body>
+</html>
