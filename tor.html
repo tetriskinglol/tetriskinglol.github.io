@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tor - Cybersecurity Docs</title>
+<title>Tor - Cyber Docs</title>
 
 <style>
 :root {
-    --bg: #0d1117;
-    --text: #c9d1d9;
-    --accent: #58a6ff;
-    --border: #30363d;
+    --text: #111;
+    --border: #ddd;
+    --bg: #fff;
+    --accent: #2563eb;
 }
 
 body {
@@ -22,9 +22,10 @@ body {
 
 /* HEADER */
 header {
-    padding: 15px;
+    padding: 20px;
+    border-bottom: 2px solid var(--border);
+    text-align: center;
     font-size: 22px;
-    border-bottom: 1px solid var(--border);
 }
 
 /* LAYOUT */
@@ -35,50 +36,59 @@ header {
 
 /* SIDEBAR */
 .sidebar {
-    width: 220px;
-    border-right: 1px solid var(--border);
+    width: 240px;
+    border-right: 2px solid var(--border);
     padding: 15px;
 }
 
-.category {
-    font-weight: bold;
-    margin-top: 15px;
+.sidebar button {
+    width: 100%;
+    background: none;
+    border: none;
+    text-align: left;
+    padding: 8px 0;
     cursor: pointer;
 }
 
-.links {
-    display: none;
-    margin-left: 10px;
+.sidebar button:hover {
+    color: var(--accent);
 }
 
-.links a {
+.submenu {
+    display: none;
+    padding-left: 10px;
+}
+
+.submenu a {
     display: block;
     text-decoration: none;
-    color: var(--text);
-    padding: 5px 0;
+    color: #333;
+    margin: 5px 0;
 }
 
-.links a:hover {
+.submenu a:hover {
     color: var(--accent);
 }
 
 /* CONTENT */
 .content {
     flex: 1;
-    padding: 20px;
+    padding: 25px;
 }
 
+/* BOX */
 .box {
-    border: 1px solid var(--border);
+    border: 2px solid var(--border);
     padding: 15px;
     margin-bottom: 20px;
-    background: #161b22;
 }
 
 /* WARNING */
 .warning {
-    color: #ffcc00;
-    font-weight: bold;
+    border: 2px solid red;
+    background: #fff5f5;
+    padding: 15px;
+    margin-bottom: 20px;
 }
 </style>
 </head>
@@ -86,7 +96,7 @@ header {
 <body>
 
 <header>
-Cybersecurity Docs
+Tor Documentation
 </header>
 
 <div class="container">
@@ -94,19 +104,22 @@ Cybersecurity Docs
 <!-- SIDEBAR -->
 <div class="sidebar">
 
-    <div class="category" onclick="toggle('basics')">Basics</div>
-    <div class="links" id="basics">
+    <button onclick="toggle('basics')">Basics</button>
+    <div id="basics" class="submenu">
         <a href="basics.html">HTML</a>
     </div>
 
-    <div class="category" onclick="toggle('tools')">Tools</div>
-    <div class="links" id="tools">
+    <button onclick="toggle('tools')">Security Tools</button>
+    <div id="tools" class="submenu">
         <a href="nmap.html">Nmap</a>
+        <a href="wireshark.html">Wireshark</a>
+        <a href="metasploit.html">Metasploit</a>
+        <a href="maltego.html">Maltego</a>
         <a href="tor.html">Tor</a>
     </div>
 
-    <div class="category" onclick="toggle('interactive')">Interactive</div>
-    <div class="links" id="interactive">
+    <button onclick="toggle('interactive')">Interactive</button>
+    <div id="interactive" class="submenu">
         <a href="terminal.html">Terminal</a>
     </div>
 
@@ -115,53 +128,57 @@ Cybersecurity Docs
 <!-- CONTENT -->
 <div class="content">
 
-    <div class="box">
-        <div class="warning">⚠️ LEGAL WARNING</div>
-        <p>Using Tor is legal in most countries, but using it for illegal activities is not. Do not attempt to buy illegal goods or access illegal content.</p>
-    </div>
-
-    <div class="box">
-        <h2>What is Tor?</h2>
-        <p>Tor (The Onion Router) is a network that helps you stay anonymous online by routing your internet traffic through multiple servers.</p>
-    </div>
-
-    <div class="box">
-        <h2>How it Works</h2>
-        <ul>
-            <li>Your traffic is encrypted</li>
-            <li>It passes through multiple nodes</li>
-            <li>Each node only knows the previous and next step</li>
-            <li>This makes tracking very difficult</li>
-        </ul>
-    </div>
-
-    <div class="box">
-        <h2>Common Uses</h2>
-        <ul>
-            <li>Privacy protection</li>
-            <li>Bypassing censorship</li>
-            <li>Anonymous browsing</li>
-        </ul>
-    </div>
-
-    <div class="box">
-        <h2>Important Notes</h2>
-        <ul>
-            <li>Tor does not make you completely invisible</li>
-            <li>You can still be tracked if you log into accounts</li>
-            <li>Always use it responsibly</li>
-        </ul>
-    </div>
-
+<div class="warning">
+    <h3>⚠️ Legal Warning</h3>
+    <p>Tor is designed for privacy and anonymity.</p>
+    <p>Using Tor to access illegal content or purchase illegal items is against the law.</p>
+    <p>Always use Tor responsibly and legally.</p>
 </div>
 
+<div class="box">
+    <h2>What is Tor?</h2>
+    <p>Tor (The Onion Router) is a network that allows users to browse the internet anonymously by routing traffic through multiple servers.</p>
+</div>
+
+<div class="box">
+    <h2>How it works</h2>
+<pre>
+Your Device → Node 1 → Node 2 → Node 3 → Website
+
+Each step encrypts your data, hiding your identity.
+</pre>
+</div>
+
+<div class="box">
+    <h2>What it is used for</h2>
+    <ul>
+        <li>Privacy and anonymity</li>
+        <li>Bypassing censorship</li>
+        <li>Protecting personal data</li>
+    </ul>
+</div>
+
+<div class="box">
+    <h2>Important Notes</h2>
+    <ul>
+        <li>Tor does not make you completely untraceable</li>
+        <li>Do not log into personal accounts if you want anonymity</li>
+        <li>Always follow laws in your country</li>
+    </ul>
+</div>
+
+<div class="box">
+    <h2>Why it's used</h2>
+    <p>Tor is used by journalists, researchers, and privacy-focused users to protect their identity and communications online.</p>
+</div>
+
+</div>
 </div>
 
 <script>
 function toggle(id) {
-    const section = document.getElementById(id);
-    section.style.display =
-        section.style.display === "block" ? "none" : "block";
+    let el = document.getElementById(id);
+    el.style.display = el.style.display === "block" ? "none" : "block";
 }
 </script>
 
